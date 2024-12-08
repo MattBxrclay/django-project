@@ -1,9 +1,11 @@
-# pages/urls.py
 from django.urls import path
-from .views import HomePageView, AboutPageView, UserCreate
+from .views import HomePageView, AboutPageView, UserCreate, confirm_email
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('about/', AboutPageView.as_view(), name='about'),
-    path('user/create/', UserCreate, name='UserCreate'), # URL path for form
+    path('user/create/', UserCreate, name='UserCreate'),
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('confirm-email/<uidb64>/<token>/', confirm_email, name='confirm_email'),
 ]
