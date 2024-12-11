@@ -10,6 +10,9 @@ from django.http import HttpResponse
 from pages.models import User
 from pages.forms import UserForm
 from django.core.mail import send_mail
+from django.contrib.auth.forms import UserChangeForm
+from .forms import CustomUserChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -64,6 +67,34 @@ def confirm_email(request, uidb64, token):
         return HttpResponse('Thank you for confirming your email. You can now log in.')
     else:
         return HttpResponse('The confirmation link is invalid or has expired.')
+    
+def user_login(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+        else:
+            messages.error(request, "Invalid email or password. Please try again.")
+    return render(request, "login.html")
+
+    
+def edit_profile(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            if form.cleaned_data['password']:
+                user.set_password(form.cleaned_data['password'])  # Update password securely
+            user.save()
+            update_session_auth_hash(request, user)  # Prevents logout after password change
+            return redirect('edit_profile')  # Redirect back to the same page or a success page
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+
+    return render(request, 'accounts/edit_profile.html', {'form': form})
 
 # Test email sending (registration confirmation)
 send_mail(

@@ -22,3 +22,14 @@ class UserForm(ModelForm):
         if commit:
             user.save()
         return user
+
+class CustomUserChangeForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        required=False,
+        help_text="Leave blank if you don't want to change your password.",
+    )
+
+    class Meta:
+        model = User
+        fields = ['name', 'email']  # Name and email fields
