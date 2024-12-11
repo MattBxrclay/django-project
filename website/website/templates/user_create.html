@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <title>User Registration</title>
 </head>
 <body>
-    <h1>Register an Account</h1>
-    <form action="{% url 'UserCreate' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="button" type="submit">Register</button>
+    <div class="container">
+        <nav class="nav nav-pills navbar-expand-lg navbar-light bg-light flex-column flex-sm-row">
+            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'home' %}">Home</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'about' %}">About</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'login' %}">Login</a>
+            <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="{% url 'UserCreate' %}">Register</a>
+        </nav>
+    </div>
+    <form class="col-lg-6 offset-lg-3" action="{% url 'UserCreate' %}" method="post">
+        <div class="form-group container">
+            <h1>Register an Account</h1>
+            {% csrf_token %}
+            {{ form }}
+            <button class="button btn btn-success btn-lg" type="submit">Register</button>
+            <p>Already have an account? <a href="{% url 'login' %}">Log in here</a>.</p>
+        </div>
     </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Log in here</a>.</p>
 </body>
 </html>

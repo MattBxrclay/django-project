@@ -1,2 +1,22 @@
 <!-- templates/about.html -->
- <h1>About Page</h1>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>User Registration</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav nav-pills navbar-expand-lg navbar-light bg-light flex-column flex-sm-row">
+            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'home' %}">Home</a>
+            <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'login' %}">Login</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'UserCreate' %}">Register</a>
+        </nav>
+    </div>
+</body>
+</html>
