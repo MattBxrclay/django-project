@@ -13,6 +13,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.forms import UserChangeForm
 from .forms import CustomUserChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -80,7 +81,7 @@ def user_login(request):
             messages.error(request, "Invalid email or password. Please try again.")
     return render(request, "login.html")
 
-    
+@login_required(login_url='/login/')
 def edit_profile(request):
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance=request.user)

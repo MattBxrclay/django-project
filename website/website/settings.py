@@ -132,3 +132,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'team5website123@gmail.com'
 EMAIL_HOST_PASSWORD = 'kmjx flop haez unfp'
+
+LOGIN_URL = 'login/'
