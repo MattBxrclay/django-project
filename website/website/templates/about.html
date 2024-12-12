@@ -1,22 +1,41 @@
 <!-- templates/about.html -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <title>User Registration</title>
+<title>About CleanSMRs</title>
 </head>
 <body>
-    <div class="container">
-        <nav class="nav nav-pills navbar-expand-lg navbar-light bg-light flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'home' %}">Home</a>
-            <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'login' %}">Login</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'UserCreate' %}">Register</a>
-        </nav>
-    </div>
+<div class="container mt-4">
+<nav class="nav nav-pills navbar-expand-lg navbar-light bg-light flex-column flex-sm-row mb-4">
+<a class="flex-sm-fill text-sm-center nav-link" href="{% url 'home' %}">Home</a>
+<a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
+<a class="flex-sm-fill text-sm-center nav-link" href="{% url 'login' %}">Login</a>
+<a class="flex-sm-fill text-sm-center nav-link" href="{% url 'UserCreate' %}">Register</a>
+</nav>
+ 
+        <div class="content">
+<h1>About CleanSMRs</h1>
+<p>
+                Artificial Intelligence (AI) is revolutionising the world, but this progress comes with significant environmental challenges. AI's rapid advancements are accompanied by an ever-increasing demand for energy, particularly in data centres where complex models are trained and deployed. According to the International Energy Agency (IEA), energy consumption in AI-driven data centres is projected to double by 2026, highlighting the urgent need for sustainable solutions.
+</p>
+ 
+            <p>
+                CleanSMRs is at the forefront of addressing this critical issue by pioneering the use of Small Modular Reactors (SMRs) to power data centres. Unlike renewable energy sources like wind or solar, which are intermittent, SMRs provide reliable, carbon-free energy 24/7. This makes them an ideal choice for supporting the continuous and intensive energy demands of AI workloads.
+</p>
+ 
+            <p>
+                Our mission extends beyond engineering SMRs for data centres. CleanSMRs is committed to fostering environmental stewardship by enabling scientists, academic institutions, and researchers to analyse the impact of SMRs on the environment. Through our innovative eCommerce platform, we offer subscription-based access to a wealth of data stored in state-of-the-art data lakes and warehouses. This data serves as a foundation for predictive analytics and informed decision-making.
+</p>
+ 
+            <p>
+                As technology continues to shape our future, CleanSMRs strives to ensure that progress is sustainable. Join us in building a cleaner, greener world powered by innovative nuclear solutions.
+</p>
+</div>
+</div>
 </body>
 </html>
