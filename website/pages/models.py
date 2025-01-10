@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.core.exceptions import ValidationError
 
 class UserManager(BaseUserManager):
     def create_user(self, email, name, password=None, **extra_fields):
@@ -8,6 +9,12 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, name=name, **extra_fields)
         user.set_password(password)  # Hash the password
+
+        try:
+            user.full_clean()  # This triggers validation, including email validation
+        except ValidationError as e:
+            raise ValidationError(f"Validation failed: {e}")
+
         user.save(using=self._db)
         return user
 
